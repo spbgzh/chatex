@@ -2,6 +2,7 @@
 The web programming project of the second year of the university.  
 This is a social application that helps you find like-minded friends.
 
+Technology stack: Spring Boot, Spring Security, Thymeleaf, Mybatis  
 
 ## Contributor
 Suvorov Denis Vitalievich / Суворов Денис Витальевич  
