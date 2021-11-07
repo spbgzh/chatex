@@ -9,12 +9,14 @@
     <link th:href="@{/css/signin.css}" rel="stylesheet">
 
 </head>
-<body class="text-center">
+<body class="text-center bg-light">
 
 <main class="form-signin">
     <form th:action="@{/doLogin}" method="post">
+        <a th:href="@{/}">
         <img class="mb-4" th:src="@{/img/logo.svg}" alt="" width="72" height="57" src="">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        </a>
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="user">
@@ -28,7 +30,7 @@
         <div class="checkbox mb-3">
             <label>
                 <div><input name="remember-me" type="checkbox">Remember me</div>
-                <div><a th:href="@{/password_reset}">Forget the password</a>
+                <div><a th:href="@{/password_reset}">Forget the password</a></div>
             </label>
         </div>
 
