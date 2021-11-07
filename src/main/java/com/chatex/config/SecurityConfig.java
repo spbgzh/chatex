@@ -1,19 +1,17 @@
 package com.chatex.config;
 
+import com.chatex.service.UserCertificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserDetailsService userService;
+    UserCertificationService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -22,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //If user don't have permission will be redirected to login page
         http.formLogin().loginPage("/doLogin")
                 .usernameParameter("user").passwordParameter("pwd").
-                defaultSuccessUrl("/index").failureUrl("/doLogin").permitAll()
+                defaultSuccessUrl("/index").failureUrl("/loginError").permitAll()
                 .and()
                 .csrf().disable()
                 .rememberMe();
