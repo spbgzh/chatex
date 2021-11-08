@@ -2,12 +2,14 @@ package com.chatex.pojo;
 
 public class User {
     private int id;
+    private String age;
     private String username;
     private String password;
     private String first_name;
     private String last_name;
     private String email;
     private String phone_number;
+    private String gender;
 
 
     public int getId() {
@@ -34,6 +36,13 @@ public class User {
         this.password = password;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
 
     public String getFirst_name() {
         return first_name;
@@ -49,6 +58,14 @@ public class User {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getEmail() {
@@ -67,9 +84,11 @@ public class User {
         this.phone_number = phone_number;
     }
 
-    public User(String username, String password, String first_name, String last_name, String email, String phone_number) {
+    public User(String username, String password,String age, String gender, String first_name, String last_name, String email, String phone_number) {
         this.username = username;
         this.password = password;
+        this.age=age;
+        this.gender = gender;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;

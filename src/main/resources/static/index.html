@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chatex</title>
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/footers.css}" rel="stylesheet">
@@ -23,7 +23,7 @@
         </a>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a th:href="@{/}" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
@@ -45,10 +45,10 @@
 <div class="px-4 pt-5 my-5 text-center ">
     <h1 class="display-4 fw-bold">Chatex</h1>
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">This is a social application website based on clustering algorithm.<br> The website
-            calculates
-            and pushes people who match you based on the personal information, hobbies and other information filled in
-            when users register, helping users to meet new friends who have a good impression of each other.</p>
+        <p class="lead mb-4">This is a social application website based on clustering algorithm.<br>
+            The website calculates and pushes people who match you based on the personal
+            information, hobbies and other information filled in when users register.
+            It helps users to make new friends who have a good impression of each other.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
 
             <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Searching</button>

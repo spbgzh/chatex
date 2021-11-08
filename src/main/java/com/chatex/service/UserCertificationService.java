@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserCertificationService implements UserDetailsService {
 
     @Autowired
     private UserManageMapper userManageMapper;
@@ -26,6 +26,7 @@ public class UserService implements UserDetailsService {
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         String password = encoder.encode(userManageMapper.getPasswordByUsername(username));
+
         //security权限设置 ADMIN or USER
         Collection<GrantedAuthority> authorities = new ArrayList();
         authorities.add(new SimpleGrantedAuthority(userManageMapper.getRoleByID(userManageMapper.getIDByUsername(username))));
