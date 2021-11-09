@@ -10,29 +10,32 @@ import java.util.List;
 public interface UserMapper {
 
 
-
     // user
     @Update("update user set password = #{password} where username = #{username}")
     int updatePasswordByUsername(@Param("username") String username,
                                  @Param("password") String password);
+
+    @Update("update user set Role = #{Role} where username = #{username}")
+    int updateRoleByUsername(@Param("username") String username,
+                             @Param("Role") String Role);
 
     @Update("update user set age = #{age}," +
             " username = #{username}, gender = #{gender}, first_name = #{first_name}," +
             " last_name = #{last_name}, email = #{email}, phone_number = #{phone_number}" +
             " where id = #{id}")
     int updateUserByID(@Param("id") int id,
-                   @Param("age") String age,
-                   @Param("username") String username,
-                   @Param("gender") String gender,
-                   @Param("first_name") String first_name,
-                   @Param("last_name") String last_name,
-                   @Param("email") String email,
-                   @Param("phone_number") String phone_number);
+                       @Param("age") String age,
+                       @Param("username") String username,
+                       @Param("gender") String gender,
+                       @Param("first_name") String first_name,
+                       @Param("last_name") String last_name,
+                       @Param("email") String email,
+                       @Param("phone_number") String phone_number);
 
     @Insert("insert into user "
-            + "(age, username, password, gender, first_name, last_name, email, phone_number) "
+            + "(age, username, password, gender, first_name, last_name, email, phone_number, role) "
             + "values "
-            + "(#{age}, #{username}, #{password}, #{gender},#{first_name}, #{last_name}, #{email}, #{phone_number}) ")
+            + "(#{age}, #{username}, #{password}, #{gender},#{first_name}, #{last_name}, #{email}, #{phone_number}, #{role}) ")
     int insertUser(@Param("age") String age,
                    @Param("username") String username,
                    @Param("password") String password,
@@ -40,7 +43,8 @@ public interface UserMapper {
                    @Param("first_name") String first_name,
                    @Param("last_name") String last_name,
                    @Param("email") String email,
-                   @Param("phone_number") String phone_number
+                   @Param("phone_number") String phone_number,
+                   @Param("role") String role
     );
 
     @Select("select count(*) from user where username = #{username}")
@@ -48,6 +52,22 @@ public interface UserMapper {
 
     @Select("select * from user where username = #{username}")
     User getUserByUsername(@Param("username") String username);
+
+    @Select("select * from user where id = #{id}")
+    User getUserByID(@Param("id") int id);
+
+
+    @Select("select * from user where id != #{id} && age >= #{minAge} && age <= #{maxAge} && gender = #{genderRestriction}")
+    List<User> getUserListWithoutIdGenderRestriction(@Param("id") int id,
+                                                     @Param("minAge") String minAge,
+                                                     @Param("maxAge") String maxAge,
+                                                     @Param("genderRestriction") String genderRestriction
+    );
+
+    @Select("select * from user where id != #{id} && age >= #{minAge} && age <= #{maxAge}")
+    List<User> getUserListWithoutId(@Param("id") int id,
+                                    @Param("minAge") String minAge,
+                                    @Param("maxAge") String maxAge);
 
     @Select("select id from user where username = #{username}")
     int getIDByUsername(@Param("username") String username);
@@ -78,25 +98,11 @@ public interface UserMapper {
     List<User> getUserList();
 
 
-    @Select("select * from user where id = #{id}")
-    User userByID(@Param("id") int id);
-
-
-    @Insert("insert into user       "
-            + "(id, name, pwd)    "
-            + "values                   "
-            + "(#{id}, #{name}, #{pwd}) ")
-    int addUser(@Param("id") int id,
-                @Param("name") String name,
-                @Param("pwd") String pwd);
-
-
     @Delete("delete from user where id = #{id}")
     int deleteUserByID(@Param("id") int id);
 
-
-
-
+    @Select("select role from user where username = #{username}")
+    String getRoleByUsername(@Param("username") String username);
 
 
 }

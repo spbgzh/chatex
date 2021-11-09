@@ -119,7 +119,12 @@
     <div style="padding:0 20px;">
         <h2>Introduction information</h2>
         <div style="padding:20px;margin: 10px">
-            <form class="needs-validation" novalidate th:action="@{/PostEditIntroductionInfo}" method="post">
+            <form class="needs-validation" novalidate th:action="@{/PostEditIntroductionInfoPostEditIntroductionInfoPostEditIntroductionInfoPostEditIntroductionInfo}" method="post">
+                <div class="mb-3">
+                    <label for="aboutMeTextarea" class="col-form-label-lg">About Me:</label>
+                    <textarea name="aboutMe" type="text" class="form-control" id="aboutMeTextarea" required th:placeholder="${userIntroduction.getAboutMe()}" rows="3"></textarea>
+                </div>
+
                 <div class="mb-3">
                     <label for="somethingToSayTextarea" class="col-form-label-lg">Something to Say:</label>
                     <textarea name="somethingToSay" type="text" class="form-control" id="somethingToSayTextarea" required th:placeholder="${userIntroduction.getSomethingToSay()}" rows="5"></textarea>

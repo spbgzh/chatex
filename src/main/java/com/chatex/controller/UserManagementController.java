@@ -1,8 +1,8 @@
 package com.chatex.controller;
 
+import com.chatex.mapper.HobbyScoreMapper;
 import com.chatex.mapper.UserIntroductionMapper;
 import com.chatex.mapper.UserMapper;
-import com.chatex.mapper.UserRoleMapper;
 import com.chatex.pojo.User;
 import com.chatex.pojo.UserIntroduction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class UserManagementController {
     @Autowired
     UserIntroductionMapper userIntroductionMapper;
     @Autowired
-    UserRoleMapper userRoleMapper;
+    HobbyScoreMapper hobbyScoreMapper;
 
     //Sign-in
     @RequestMapping("/doLogin")
@@ -55,12 +55,12 @@ public class UserManagementController {
                 user.getFirst_name(),
                 user.getLast_name(),
                 user.getEmail(),
-                user.getPhone_number());
+                user.getPhone_number(),
+                _user);
         int id = userMapper.getIDByUsername(user.getUsername());
-        userRoleMapper.insertUserRole(id, _user);
-        userIntroductionMapper.insertUserIntroduction(id, "This user said nothing");
-        //！！分数数据库还没有初始化
-        return "redirect:/doLogin";
+        userIntroductionMapper.insertUserIntroduction(id, "This user said nothing", "This user said nothing");
+        hobbyScoreMapper.insertHobbyScores(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        return "redirect:/signUpSuccess";
     }
 
 
@@ -120,13 +120,13 @@ public class UserManagementController {
     public String editIntroductionInfo(UserIntroduction userIntroduction) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         int idUser = userMapper.getIDByUsername(name);
-        userIntroductionMapper.updateSomethingToSayByID(idUser, userIntroduction.getSomethingToSay());
+        userIntroductionMapper.updateSomethingToSayByID(idUser, userIntroduction.getAboutMe(), userIntroduction.getSomethingToSay());
         return "redirect:/editInfoSuccess";
     }
 
 
     //manageUser
-    @GetMapping("/PostManageUser")
+    @GetMapping("/GetManageUser")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String manageUser(Model model) {
         List<User> listUser = userMapper.getUserList();
@@ -134,30 +134,44 @@ public class UserManagementController {
         return "/views/manageUser";
     }
 
-    @PostMapping("/PostManagementDeleteUser")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-    public String managementDeleteUser(User user) {
+    @PostMapping("/setRoleByUsername")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public String setRoleByUsername(User user) {
         String userName = user.getUsername();
         if (userMapper.judgeUsernameExist(userName) == 0)
+            return "redirect:/setRoleError";
+        if (userName.equals(SecurityContextHolder.getContext().getAuthentication().getName()))
+            return "redirect:/setRoleError";
+
+        userMapper.updateRoleByUsername(userName, user.getRole());
+        return "redirect:/updateUserSuccess";
+    }
+
+    @GetMapping("/PostManagementDeleteUser/{tempName}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public String managementDeleteUser(@PathVariable("tempName") String userName) {
+
+        if (userMapper.judgeUsernameExist(userName) == 0)
             return "redirect:/deleteUserNotExistError";
-        if (user.getUsername().equals(SecurityContextHolder.getContext().getAuthentication().getName()))
+        if (userName.equals(SecurityContextHolder.getContext().getAuthentication().getName()))
             return "redirect:/deleteYourselfError";
 
         int userID = userMapper.getIDByUsername(userName);
 
         userMapper.deleteUserByID(userID);
         userIntroductionMapper.deleteUserIntroductionByID(userID);
-        userRoleMapper.deleteUserRoleByID(userID);
-        //！！删除兴趣分数
+        hobbyScoreMapper.deleteHobbyScores(userID);
         return "redirect:/deleteUserSuccess";
     }
 
 
-    @GetMapping("/page/{username}")
+
+
+   /* @GetMapping("/page/{username}")
     public String pageUsername(@PathVariable("username") String username, Model model) {
         String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userMapper.getUserByUsername(username);
         model.addAttribute("user", user);
         return "";
-    }
+    }*/
 }

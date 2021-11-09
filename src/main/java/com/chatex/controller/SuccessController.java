@@ -20,4 +20,20 @@ public class SuccessController {
     public String deleteUserSuccess() {
         return "../static/success/deleteUserSuccess";
     }
+
+    @RequestMapping("/updateUserSuccess")
+    public String updateUserSuccess() {
+        return "../static/success/updateUserSuccess";
+    }
+
+    @RequestMapping("/signUpSuccess")
+    public String signUpSuccess() {
+        return "../static/success/signUpSuccess";
+    }
+
+
+    @RequestMapping("/PostScoreSuccess")
+    public String PostScoreSuccess() {
+        return "../static/success/PostScoreSuccess";
+    }
 }

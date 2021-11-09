@@ -47,6 +47,32 @@
     <h1>User management for Administrator</h1>
     <p class="lead">You can view and delete users.</p>
     <div>
+        <div>
+            <h2>Set User Role by Username</h2>
+            <br>
+            <form class="row g-3 needs-validation" novalidate th:action="@{/setRoleByUsername}" method="post">
+                <div class="col-6">
+                    <label class="visually-hidden" for="inputUsername">Username</label>
+                    <div class="input-group">
+                        <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select name="role" class="form-select" id="inlineFormSelectPref">
+                        <option selected value="USER">USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button class="w-50 btn btn-lg btn-primary align-content-sm-center  " type="submit">Post
+                    </button>
+                </div>
+            </form>
+        </div>
+        <br><br>
         <h2>Table of Users</h2>
         <table class="table">
             <thead>
@@ -59,35 +85,32 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone Number</th>
+                <th scope="col">Role</th>
+                <th scope="col">Delete</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user:${listUser}">
-                <td th:text="${user.getId()}"></td>
-                <td th:text="${user.getUsername()}"></td>
-                <td th:text="${user.getPassword()}"></td>
-                <td th:text="${user.getGender()=='man'?'Man':'Woman'}"></td>
-                <td th:text="${user.getAge()}"></td>
-                <td th:text="${user.getFirst_name()+' '+user.getLast_name()}"></td>
-                <td th:text="${user.getEmail()}"></td>
-                <td th:text="${user.getPhone_number()}"></td>
+            <tr th:each="temp:${listUser}">
+                <td th:text="${temp.getId()}"></td>
+                <td th:text="${temp.getUsername()}"></td>
+                <td th:text="${temp.getPassword()}"></td>
+                <td th:text="${temp.getGender()=='man'?'Man':'Woman'}"></td>
+                <td th:text="${temp.getAge()}"></td>
+                <td th:text="${temp.getFirst_name()+' '+temp.getLast_name()}"></td>
+                <td th:text="${temp.getEmail()}"></td>
+                <td th:text="${temp.getPhone_number()}"></td>
+                <td th:text="${temp.getRole()}"></td>
+                <td>
+                    <a th:href="@{/PostManagementDeleteUser/}+${temp.getUsername()}"
+                       class="btn btn-outline-danger">Del</a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <br>
-    <div>
-        <h2>Delete User by Username</h2>
-        <form class="row g-3 needs-validation" novalidate th:action="@{/PostManagementDeleteUser}" method="post">
-            <div class="col-auto">
-                <label for="inputUsername" class="visually-hidden">Username</label>
-                <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Username">
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Confirm Delete</button>
-            </div>
-        </form>
-    </div>
+
+
+<br>
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top">
         <p class="col-md-4 mb-0 text-muted">&copy; 2021 Company, Inc</p>
