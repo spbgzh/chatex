@@ -1,8 +1,8 @@
-drop database if exists my;
+drop database if exists mybatis;
 
-create database my;
+create database mybatis;
 
-use my;
+use mybatis;
 
 create table hobby_scores
 (
@@ -51,7 +51,7 @@ create table user_like_dislike
 	id int auto_increment,
 	like int default 0 not null,
 	dislike int default 0 not null,
-	constraint user_like_disike_pk
+	constraint user_like_dislike_pk
 		primary key (id)
 );
 

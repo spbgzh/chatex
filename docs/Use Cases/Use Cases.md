@@ -3,8 +3,9 @@
 ## The System included
 1.Login System  
 2.Register System  
-3.Recommend System   
-4.Management System  
+3.Searching System
+4.Like Dislike System
+5.Management System
 
 
 ## Description of systems
@@ -14,7 +15,8 @@
 | Login System      | Provide users with the function of website login |
 | Register System   | Provide users with the function of website registration | 
 | Management System | Provide users and administrators with the function of managing accounts respectively |
-| Recommend System  | The main business of the website, looking for like-minded friends for users |
+| Searching System  | The main business of the website, searching for like-minded friends for users |
+| Like Dislike System  | Click to rate whether you like this user |
 
 ## Details of each system
 |        *Login System*       | Details |
@@ -31,10 +33,16 @@
 | Enter password   | Provide users with the function of entering the website account password | 
 | Confirm register | Provide users with the function of confirming register |
 
-|        *Recommend System*       | Details |
+|        *Searching System*       | Details |
 | :----------------:| :----: |
 |Modify recommended parameters| For example, modify age range, modify gender range|
 | Start recommend | Start recommend and Show recommended results on the web | 
+
+|        *Like Dislike System*       | Details |
+| :----------------:| :----: |
+|Like| The number of users who like this user plus one|
+| Dislike | The number of users who dislike this user plus one |
+
 
 |        *Management System*       | Details |
 | :----------------:| :----: |

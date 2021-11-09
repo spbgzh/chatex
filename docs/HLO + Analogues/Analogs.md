@@ -14,8 +14,8 @@ A social networking site, looking for potential dates, chatting with friends, sh
 | Name | Social Application | Chat | Paid | Promote Strangers | Post |Share pictures and videos|Share files|
 | :-----:| :----: | :----: | :-----:| :----: | :----: | :----: |:----: |
 | VK | ✔ | ✔ |   |  | ✔ | ✔ |✔ |
-| Tinder | ✔ | ✔ | ✔ | ✔ | ✔ |✔ ||
-| Badoo | ✔ | ✔ | ✔ | ✔ |  |✔ ||
+| Tinder | ✔ | ✔ | ✔ | ✔ | ✔ |✔ | |
+| Badoo | ✔ | ✔ | ✔ | ✔ |  |✔ | |
 
 ## Summary
 The website is a social application website, in order to meet people's needs for finding dates or new friends.  
