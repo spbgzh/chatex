@@ -35,5 +35,17 @@ public class ErrorController {
         return "../static/error/deleteUserNotExistError";
     }
 
+    @RequestMapping("/setRoleError")
+    public String setRoleError() {
+        return "../static/error/setRoleError";
+    }
+    @RequestMapping("/PostScoreError")
+    public String PostScoreError() {
+        return "../static/error/PostScoreError";
+    }
+    @RequestMapping("/wrongValueError")
+    public String wrongValueError() {
+        return "../static/error/wrongValueError";
+    }
 
 }

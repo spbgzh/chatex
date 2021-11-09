@@ -1,6 +1,6 @@
 package com.chatex.pojo;
 
-public class User {
+public class User  implements Comparable<User>{
     private int id;
     private String age;
     private String username;
@@ -10,7 +10,15 @@ public class User {
     private String email;
     private String phone_number;
     private String gender;
+    private String role;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -84,16 +92,23 @@ public class User {
         this.phone_number = phone_number;
     }
 
-    public User(String username, String password,String age, String gender, String first_name, String last_name, String email, String phone_number) {
+    public User(String username, String password, String age, String gender, String first_name, String last_name, String email, String phone_number, String role) {
         this.username = username;
         this.password = password;
-        this.age=age;
+        this.age = age;
         this.gender = gender;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.phone_number = phone_number;
+        this.role = role;
     }
 
 
+    @Override
+    public int compareTo(User o) {
+        if (o.getId()>this.getId())return 1;
+        else if (o.getId()<this.getId()) return -1;
+        else return 0;
+    }
 }

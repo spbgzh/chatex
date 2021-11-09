@@ -1,7 +1,6 @@
 package com.chatex.service;
 
 import com.chatex.mapper.UserMapper;
-import com.chatex.mapper.UserRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,8 +20,6 @@ public class UserCertificationService implements UserDetailsService {
 
     @Autowired
     UserMapper userMapper;
-    @Autowired
-    UserRoleMapper userRoleMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,9 +30,8 @@ public class UserCertificationService implements UserDetailsService {
 
         //security权限设置 ADMIN or USER
         Collection<GrantedAuthority> authorities = new ArrayList();
-        authorities.add(new SimpleGrantedAuthority(userRoleMapper.getRoleByID(userMapper.getIDByUsername(username))));
+        authorities.add(new SimpleGrantedAuthority(userMapper.getRoleByUsername(username)));
         //验证成功信息设置
-
         UserDetails user = new User(username, password, authorities);
         return user;
     }

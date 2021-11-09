@@ -1,15 +1,52 @@
 package com.chatex.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.chatex.pojo.HobbyScore;
+import com.chatex.pojo.User;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface HobbyScoreMapper {
     @Select("select * from hobby_scores where id = #{id}")
-    List<Integer> getListValueByID(@Param("id") int id);
+    HobbyScore getHobbyScoreByID(@Param("id") int id);
 
+    @Select("select * from hobby_scores where id <> #{id}\"")
+    List<HobbyScore> getHobbyScoreListWithoutID(@Param("id") int id);
+
+    @Update("update hobby_scores set sports = #{sports}," +
+            " music = #{music}, travel = #{travel}, reading = #{reading}," +
+            " art = #{art}, movie = #{movie}, cartoon = #{cartoon}," +
+            " games = #{games}, cooking = #{cooking}, shopping = #{shopping}" +
+            " where id = #{id}")
+    int updateScore(@Param("id") int id,
+                    @Param("sports") int sports,
+                    @Param("music") int music,
+                    @Param("travel") int travel,
+                    @Param("reading") int reading,
+                    @Param("art") int art,
+                    @Param("movie") int movie,
+                    @Param("cartoon") int cartoon,
+                    @Param("games") int games,
+                    @Param("cooking") int cooking,
+                    @Param("shopping") int shopping);
+
+    @Insert("insert into hobby_scores "
+            + "(sports, music, travel, reading, art, movie, cartoon, games, cooking, shopping) "
+            + "values "
+            + "(#{sports}, #{music}, #{travel}, #{reading},#{art}, #{movie}, #{cartoon}, #{games}, #{cooking}, #{shopping}) ")
+    int insertHobbyScores(@Param("sports") int sports,
+                          @Param("music") int music,
+                          @Param("travel") int travel,
+                          @Param("reading") int reading,
+                          @Param("art") int art,
+                          @Param("movie") int movie,
+                          @Param("cartoon") int cartoon,
+                          @Param("games") int games,
+                          @Param("cooking") int cooking,
+                          @Param("shopping") int shopping
+    );
+    @Delete("delete from hobby_scores where id = #{id}")
+    int deleteHobbyScores(@Param("id") int id);
 
 }
