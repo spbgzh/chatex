@@ -1,6 +1,7 @@
 package com.chatex.service;
 
-import com.chatex.mapper.UserManageMapper;
+import com.chatex.mapper.UserMapper;
+import com.chatex.mapper.UserRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,18 +20,22 @@ import java.util.Collection;
 public class UserCertificationService implements UserDetailsService {
 
     @Autowired
-    private UserManageMapper userManageMapper;
+    UserMapper userMapper;
+    @Autowired
+    UserRoleMapper userRoleMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        String password = encoder.encode(userManageMapper.getPasswordByUsername(username));
+        String password = encoder.encode(userMapper.getPasswordByUsername(username));
+
 
         //security权限设置 ADMIN or USER
         Collection<GrantedAuthority> authorities = new ArrayList();
-        authorities.add(new SimpleGrantedAuthority(userManageMapper.getRoleByID(userManageMapper.getIDByUsername(username))));
+        authorities.add(new SimpleGrantedAuthority(userRoleMapper.getRoleByID(userMapper.getIDByUsername(username))));
         //验证成功信息设置
+
         UserDetails user = new User(username, password, authorities);
         return user;
     }

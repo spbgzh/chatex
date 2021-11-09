@@ -9,6 +9,7 @@ public class ErrorController {
     public String loginError() {
         return "../static/error/loginError";
     }
+
     @RequestMapping("/usernameExistError")
     public String usernameExistError() {
         return "../static/error/usernameExistError";
@@ -18,4 +19,21 @@ public class ErrorController {
     public String resetPasswordError() {
         return "../static/error/resetPasswordError";
     }
+
+    @RequestMapping("/editInfoUsernameExistError")
+    public String editInfoUsernameExistError() {
+        return "../static/error/editInfoUsernameExistError";
+    }
+
+    @RequestMapping("/deleteYourselfError")
+    public String deleteYourselfError() {
+        return "../static/error/deleteYourselfError";
+    }
+
+    @RequestMapping("/deleteUserNotExistError")
+    public String deleteUserNotExistError() {
+        return "../static/error/deleteUserNotExistError";
+    }
+
+
 }

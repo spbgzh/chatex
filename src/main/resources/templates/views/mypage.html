@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Chatex</title>
+    <title>My Page</title>
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/footers.css}" rel="stylesheet">
@@ -36,56 +36,102 @@
         </div>
         <div sec:authorize="isAuthenticated" class="col-md-3 text-end">
             <a th:href="@{/logout}" class="btn btn-outline-primary me-2">Logout</a>
-            <a th:href="@{/mypage}" class="btn btn-primary">My page</a>
-            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/PostManageUser}" class="btn ">
-                <svg width="30" height="30" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                </svg>
-            </a>
+            <a th:href="@{/}" class="btn btn-primary">Back</a>
         </div>
     </header>
 </div>
 
-<!--hero!-->
-<div class="px-4 pt-5 my-5 text-center ">
-    <div sec:authorize="!isAuthenticated">
-        <h1 class="display-4 fw-bold">Chatex</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">This is a social application website based on clustering algorithm.<br>
-                The website calculates and pushes people who match you based on the personal
-                information, hobbies and other information filled in when users register.
-                It helps users to make new friends who have a good impression of each other.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <a th:href="@{/doLogin}">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Searching</button>
-                </a>
-                <a th:href="@{/logout}">
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Guides</button>
-                </a>
-            </div>
+
+<div class="container" style="padding:0 120px;">
+
+    <h1>Home Page</h1>
+    <p class="lead">Modify your personal information.</p>
+
+    <!--Basic Information!-->
+    <div style="padding:0 20px;">
+        <h2>Basic Information</h2>
+        <div style="padding:20px;margin: 10px">
+            <form class="needs-validation" novalidate th:action="@{/PostEditBasicInfo}" method="post">
+
+                <div class="mb-3 row">
+                    <label for="staticUsername" class="col-sm-2 col-form-label-lg">Username</label>
+                    <div class="col-sm-4">
+                        <input name="username" type="text" class="form-control-plaintext" id="staticUsername"
+                               th:value="${loginUser.getUsername()}">
+                    </div>
+                    <label for="staticAge" class="col-sm-2 col-form-label-lg">Age</label>
+                    <div class="col-sm-4">
+                        <input name="age" type="text" class="form-control-plaintext" id="staticAge"
+                               th:value="${loginUser.getAge()}">
+                    </div>
+                </div>
+
+
+                <div class="mb-3 row">
+                    <label for="staticFirst_name" class="col-sm-2 col-form-label-lg">First Name</label>
+                    <div class="col-sm-4">
+                        <input name="first_name" type="text" class="form-control-plaintext" id="staticFirst_name"
+                               th:value="${loginUser.getFirst_name()}">
+                    </div>
+                    <label for="staticLast_name" class="col-sm-2 col-form-label-lg">Last Name</label>
+                    <div class="col-sm-4">
+                        <input name="last_name" type="text" class="form-control-plaintext" id="staticLast_name"
+                               th:value="${loginUser.getLast_name()}">
+                    </div>
+                </div>
+
+                <div class="row mb-3 ">
+                    <label for="staticGender" class="col-sm-2 col-form-label-lg">Sex</label>
+                    <select name="gender" class=" col-sm-4" id="staticGender">
+                        <option selected th:value="${loginUser.getGender()}"
+                                th:text="${loginUser.getGender()=='man'?'Man':'Woman'}"></option>
+                        <option value="man">Man</option>
+                        <option value="woman">Woman</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label-lg">Email</label>
+                    <div class="col-sm-10">
+                        <input name="email" type="email" class="form-control-plaintext" id="staticEmail"
+                               th:value="${loginUser.getEmail()}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="staticPhoneNumber" class="col-sm-3 form-label">Phone Number</label>
+                    <div class="col-sm-9">
+                        <input name="phone_number" type="text" class="form-control-plaintext" id="staticPhoneNumber"
+                               th:value="${loginUser.getPhone_number()}">
+                    </div>
+                </div>
+                <p></p>
+                <div class="text-center">
+                    <button class="w-50 btn btn-lg btn-primary align-content-sm-center  " type="submit">Edit
+                    </button>
+                </div>
+            </form>
+
         </div>
     </div>
 
-    <div sec:authorize="isAuthenticated">
-        <br>
-        <h1 class="display-4 fw-bold" sec:authentication="name">"name"</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Welcome to Chatex</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+    <!--Introduction Information!-->
+    <div style="padding:0 20px;">
+        <h2>Introduction information</h2>
+        <div style="padding:20px;margin: 10px">
+            <form class="needs-validation" novalidate th:action="@{/PostEditIntroductionInfo}" method="post">
+                <div class="mb-3">
+                    <label for="somethingToSayTextarea" class="col-form-label-lg">Something to Say:</label>
+                    <textarea name="somethingToSay" type="text" class="form-control" id="somethingToSayTextarea" required th:placeholder="${userIntroduction.getSomethingToSay()}" rows="5"></textarea>
+                </div>
 
-                <a th:href="@{/logout}">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Searching</button>
-                </a>
-            </div>
-        </div>
-        <br><br>
-    </div>
+                <div class="text-center">
+                    <button class="w-50 btn btn-lg btn-primary align-content-sm-center  " type="submit">Post
+                    </button>
+                </div>
 
-    <div class="overflow-hidden" style="max-height: 30vh;">
-        <div class="container px-5">
-            <img th:src="@{/img/infinity.svg}" class="img-fluid rounded-3 mb-4"
-                 alt="Example image" width="1000" height="6000" loading="lazy">
+            </form>
+
         </div>
     </div>
 
@@ -121,6 +167,9 @@
         </ul>
 
     </footer>
+</div>
+
+
 </div>
 
 
