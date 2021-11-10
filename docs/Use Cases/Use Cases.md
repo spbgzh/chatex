@@ -3,9 +3,10 @@
 ## The System included
 1.Login System  
 2.Register System  
-3.Searching System
-4.Like Dislike System
-5.Management System
+3.Searching System  
+4.Like Dislike System  
+5.Management System  
+6.Random User Maker System
 
 
 ## Description of systems
@@ -17,6 +18,7 @@
 | Management System | Provide users and administrators with the function of managing accounts respectively |
 | Searching System  | The main business of the website, searching for like-minded friends for users |
 | Like Dislike System  | Click to rate whether you like this user |
+| Like Dislike System  | For Administrator to create test users |
 
 ## Details of each system
 |        *Login System*       | Details |
@@ -42,6 +44,7 @@
 | :----------------:| :----: |
 |Like| The number of users who like this user plus one|
 | Dislike | The number of users who dislike this user plus one |
+| Popular Users | You can get a list of most popular ssers |
 
 
 |        *Management System*       | Details |
@@ -50,5 +53,11 @@
 | Modify the recommended impact factor   | Provide users with the function of Modifing the recommended impact factor, for example modify  hobbies feature informations like sports | 
 | Modify user account (root only)  | delete users |
 | Modify recommended system (root only)  | Modify the parameters of the algorithm |
+
+
+|        *Random User Maker System*       | Details |
+| :----------------:| :----: |
+| Create Users |To create users for test |
+
 
 

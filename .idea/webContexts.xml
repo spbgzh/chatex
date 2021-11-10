@@ -3,7 +3,12 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/resources/static/index.html" value="file://$PROJECT_DIR$/src/main/resources/static" />
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/views/SearchingPage.html" value="file://$PROJECT_DIR$/src/main/resources/templates/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/views/SearchingResultPage.html" value="file://$PROJECT_DIR$/src/main/resources/templates/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/views/doLogin.html" value="file://$PROJECT_DIR$/src/main/resources/templates/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/views/manageUser.html" value="file://$PROJECT_DIR$/src/main/resources/templates/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/views/popularUser.html" value="file://$PROJECT_DIR$/src/main/resources/templates/views" />
       </map>
     </option>
   </component>

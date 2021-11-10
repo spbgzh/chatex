@@ -1,7 +1,6 @@
 package com.chatex.mapper;
 
 import com.chatex.pojo.HobbyScore;
-import com.chatex.pojo.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public interface HobbyScoreMapper {
             " art = #{art}, movie = #{movie}, cartoon = #{cartoon}," +
             " games = #{games}, cooking = #{cooking}, shopping = #{shopping}" +
             " where id = #{id}")
-    int updateScore(@Param("id") int id,
+    void updateScore(@Param("id") int id,
                     @Param("sports") int sports,
                     @Param("music") int music,
                     @Param("travel") int travel,
@@ -35,7 +34,7 @@ public interface HobbyScoreMapper {
             + "(sports, music, travel, reading, art, movie, cartoon, games, cooking, shopping) "
             + "values "
             + "(#{sports}, #{music}, #{travel}, #{reading},#{art}, #{movie}, #{cartoon}, #{games}, #{cooking}, #{shopping}) ")
-    int insertHobbyScores(@Param("sports") int sports,
+    void insertHobbyScores(@Param("sports") int sports,
                           @Param("music") int music,
                           @Param("travel") int travel,
                           @Param("reading") int reading,
@@ -47,6 +46,6 @@ public interface HobbyScoreMapper {
                           @Param("shopping") int shopping
     );
     @Delete("delete from hobby_scores where id = #{id}")
-    int deleteHobbyScores(@Param("id") int id);
+    void deleteHobbyScores(@Param("id") int id);
 
 }

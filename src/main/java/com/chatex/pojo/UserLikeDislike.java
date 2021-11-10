@@ -17,16 +17,8 @@ public class UserLikeDislike {
         return userLike;
     }
 
-    public void setUserLike(int userLike) {
-        this.userLike = userLike;
-    }
-
     public int getUserDislike() {
         return userDislike;
-    }
-
-    public void setUserDislike(int userDislike) {
-        this.userDislike = userDislike;
     }
 
     public UserLikeDislike(int userLike, int userDislike) {

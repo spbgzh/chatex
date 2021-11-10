@@ -9,25 +9,16 @@ public class SearchParameters {
         return minAge;
     }
 
-    public void setMinAge(String minAge) {
-        this.minAge = minAge;
-    }
 
     public String getMaxAge() {
         return maxAge;
     }
 
-    public void setMaxAge(String maxAge) {
-        this.maxAge = maxAge;
-    }
 
     public String getGenderRestriction() {
         return genderRestriction;
     }
 
-    public void setGenderRestriction(String genderRestriction) {
-        this.genderRestriction = genderRestriction;
-    }
 
     public SearchParameters(String minAge, String maxAge, String genderRestriction) {
         this.minAge = minAge;

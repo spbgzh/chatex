@@ -30,7 +30,7 @@ public class HobbyScoreController {
     @PostMapping("/PostScore")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public String PostScore(HobbyScore hobbyScore) {
-        if (judgeModify(hobbyScore) == false)
+        if (judgeModify(hobbyScore))
             return "redirect:/PostScoreError";
         String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
         hobbyScoreMapper.updateScore(userMapper.getIDByUsername(loginName),
@@ -48,9 +48,7 @@ public class HobbyScoreController {
     }
 
     public static boolean judgeModify(HobbyScore h) {
-        if (h.getArt() != 0 || h.getCartoon() != 0 || h.getCooking() != 0 || h.getGames() != 0 || h.getMovie() != 0 || h.getMusic() != 0 || h.getReading() != 0 || h.getShopping() != 0 || h.getSports() != 0 || h.getTravel() != 0)
-            return true;
-        else return false;
+        return h.getArt() == 0 && h.getCartoon() == 0 && h.getCooking() == 0 && h.getGames() == 0 && h.getMovie() == 0 && h.getMusic() == 0 && h.getReading() == 0 && h.getShopping() == 0 && h.getSports() == 0 && h.getTravel() == 0;
     }
 
 }

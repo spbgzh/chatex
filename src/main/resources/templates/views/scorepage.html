@@ -22,14 +22,7 @@
             </svg>
         </a>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a th:href="@{/}" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-        </ul>
-
+        
         <div sec:authorize="!isAuthenticated" class="col-md-3 text-end">
             <a th:href="@{/doLogin}" class="btn btn-outline-primary me-2">Login</a>
             <a th:href="@{/signup}" class="btn btn-primary">Sign-up</a>
@@ -44,8 +37,8 @@
 
 <div class="container" style="padding:0 120px;">
 
-    <h1>Home Page</h1>
-    <p class="lead">Modify your personal information.</p>
+    <h1>Set Score Page</h1>
+    <p class="lead">Modify your score parameters.</p>
 
     <!--Basic Information!-->
     <div style="padding:0 20px;">

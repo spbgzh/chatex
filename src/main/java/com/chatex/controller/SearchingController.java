@@ -6,7 +6,8 @@ import com.chatex.mapper.UserMapper;
 import com.chatex.pojo.HobbyScore;
 import com.chatex.pojo.SearchParameters;
 import com.chatex.pojo.User;
-import com.chatex.service.SearchingServiceImp;
+import com.chatex.service.SearchingService;
+import com.chatex.service.SearchingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,14 +28,14 @@ public class SearchingController {
     @Autowired
     HobbyScoreMapper hobbyScoreMapper;
     @Autowired
-    SearchingServiceImp searchingServiceImp;
+    SearchingService searchingService;
 
     @RequestMapping("/SearchingPage")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public String SearchingPage() {
         String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
         HobbyScore hobbyScore = hobbyScoreMapper.getHobbyScoreByID(userMapper.getIDByUsername(loginName));
-        if (!HobbyScoreController.judgeModify(hobbyScore)) return "redirect:/GetScore";
+        if (HobbyScoreController.judgeModify(hobbyScore)) return "redirect:/GetScore";
         return "views/SearchingPage";
     }
 
@@ -42,12 +43,12 @@ public class SearchingController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public String GetSearchingResult(SearchParameters searchParameters, Model model) {
 
-        if (searchingServiceImp.isInteger(searchParameters.getMinAge())&&searchingServiceImp.isInteger(searchParameters.getMaxAge())&&Integer.valueOf(searchParameters.getMinAge()) > Integer.valueOf(searchParameters.getMaxAge()))
+        if (!SearchingService.judgeNumber(searchParameters.getMinAge(),searchParameters.getMaxAge()))
             return "redirect:/wrongValueError";
         String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
         User loginUser = userMapper.getUserByUsername(loginName);
 
-        List<User> listUser = searchingServiceImp.searchingUsers(loginUser, searchParameters);
+        List<User> listUser = searchingService.searchingUsers(loginUser, searchParameters);
         model.addAttribute("listUser", listUser);
         return "views/SearchingResultPage";
     }

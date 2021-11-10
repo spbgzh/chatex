@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/my?serverTimezone=UTC&useUnicode=true&charcterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC&useUnicode=true&charcterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
   thymeleaf:
     cache: false
