@@ -22,21 +22,14 @@
             </svg>
         </a>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a th:href="@{/}" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-        </ul>
-
+        
         <div sec:authorize="!isAuthenticated" class="col-md-3 text-end">
             <a th:href="@{/doLogin}" class="btn btn-outline-primary me-2">Login</a>
             <a th:href="@{/signup}" class="btn btn-primary">Sign-up</a>
         </div>
         <div sec:authorize="isAuthenticated" class="col-md-3 text-end">
             <a th:href="@{/logout}" class="btn btn-outline-primary me-2">Logout</a>
-            <a th:href="@{/}" class="btn btn-primary">Back</a>
+            <a th:href="@{/UserPage/}+'root'" class="btn btn-primary">Back</a>
         </div>
     </header>
 </div>
@@ -99,7 +92,7 @@
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="staticPhoneNumber" class="col-sm-3 form-label">Phone Number</label>
+                    <label for="staticPhoneNumber" class="col-sm-3 col-form-label-lg">Phone Number</label>
                     <div class="col-sm-9">
                         <input name="phone_number" type="text" class="form-control-plaintext" id="staticPhoneNumber"
                                th:value="${loginUser.getPhone_number()}">
@@ -119,7 +112,7 @@
     <div style="padding:0 20px;">
         <h2>Introduction information</h2>
         <div style="padding:20px;margin: 10px">
-            <form class="needs-validation" novalidate th:action="@{/PostEditIntroductionInfoPostEditIntroductionInfoPostEditIntroductionInfoPostEditIntroductionInfo}" method="post">
+            <form class="needs-validation" novalidate th:action="@{/PostEditIntroductionInfo}" method="post">
                 <div class="mb-3">
                     <label for="aboutMeTextarea" class="col-form-label-lg">About Me:</label>
                     <textarea name="aboutMe" type="text" class="form-control" id="aboutMeTextarea" required th:placeholder="${userIntroduction.getAboutMe()}" rows="3"></textarea>

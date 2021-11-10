@@ -9,7 +9,7 @@ public interface UserIntroductionMapper {
             + "(id, aboutMe,somethingToSay) "
             + "values "
             + "(#{id}, #{aboutMe}, #{somethingToSay}) ")
-    int insertUserIntroduction(@Param("id") int id,
+    void insertUserIntroduction(@Param("id") int id,
                                @Param("aboutMe") String aboutMe,
                                @Param("somethingToSay") String somethingToSay);
 
@@ -20,10 +20,10 @@ public interface UserIntroductionMapper {
     UserIntroduction getUserIntroductionByID(@Param("id") int id);
 
     @Update("update user_introduction set somethingToSay = #{somethingToSay}, aboutMe = #{aboutMe} where id = #{id}")
-    int updateSomethingToSayByID(@Param("id") int id,
+    void updateSomethingToSayByID(@Param("id") int id,
                                  @Param("aboutMe") String aboutMe,
                                  @Param("somethingToSay") String somethingToSay);
 
     @Delete("delete from user_introduction where id = #{id}")
-    int deleteUserIntroductionByID(@Param("id") int id);
+    void deleteUserIntroductionByID(@Param("id") int id);
 }

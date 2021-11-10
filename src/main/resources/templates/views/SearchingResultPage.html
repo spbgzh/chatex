@@ -22,14 +22,7 @@
             </svg>
         </a>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a th:href="@{/}" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-        </ul>
-
+        
         <div sec:authorize="!isAuthenticated" class="col-md-3 text-end">
             <a th:href="@{/doLogin}" class="btn btn-outline-primary me-2">Login</a>
             <a th:href="@{/signup}" class="btn btn-primary">Sign-up</a>
@@ -45,7 +38,7 @@
     <div class="container" style="padding:0 120px;">
 
         <h1>The result of the Like-minded people</h1>
-        <p class="lead">The following is their personal information. </p>
+        <p class="lead">6 people most similar to you. </p>
         <div>
             <p class="lead">You can go to their personal page to view their
                 Self-introduction and message.</p>
@@ -72,8 +65,9 @@
                         <td th:text="${temp.getEmail()}"></td>
                         <td th:text="${temp.getPhone_number()}"></td>
                         <td>
-                            <a th:href="@{/PostManagementDeleteUser/}+${temp.getUsername()}"
-                               class="btn btn-outline-primary">Go</a>
+                            <a th:href="@{/UserPage/}+${temp.getUsername()}"
+                               class="text-center btn btn-outline-primary">Go</a>
+
                         </td>
                     </tr>
                     </tbody>
@@ -117,7 +111,7 @@
 
 
     </div>
-
+</div>
 
 </body>
 </html>

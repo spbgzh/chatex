@@ -2,9 +2,13 @@ package com.chatex.controller;
 
 import com.chatex.mapper.HobbyScoreMapper;
 import com.chatex.mapper.UserIntroductionMapper;
+import com.chatex.mapper.UserLikeDislikeMapper;
 import com.chatex.mapper.UserMapper;
 import com.chatex.pojo.User;
 import com.chatex.pojo.UserIntroduction;
+import com.chatex.pojo.UserLikeDislike;
+import com.chatex.service.PopularUserService;
+import com.chatex.service.PopularUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class UserManagementController {
-    public static final String _admin = "ADMIN";
     public static final String _user = "USER";
 
     @Autowired
@@ -28,6 +33,11 @@ public class UserManagementController {
     UserIntroductionMapper userIntroductionMapper;
     @Autowired
     HobbyScoreMapper hobbyScoreMapper;
+    @Autowired
+    UserLikeDislikeMapper userLikeDislikeMapper;
+
+    @Autowired
+    PopularUserService popularUserService;
 
     //Sign-in
     @RequestMapping("/doLogin")
@@ -60,6 +70,7 @@ public class UserManagementController {
         int id = userMapper.getIDByUsername(user.getUsername());
         userIntroductionMapper.insertUserIntroduction(id, "This user said nothing", "This user said nothing");
         hobbyScoreMapper.insertHobbyScores(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        userLikeDislikeMapper.insertUserLikeDislike(0, 0);
         return "redirect:/signUpSuccess";
     }
 
@@ -161,17 +172,57 @@ public class UserManagementController {
         userMapper.deleteUserByID(userID);
         userIntroductionMapper.deleteUserIntroductionByID(userID);
         hobbyScoreMapper.deleteHobbyScores(userID);
+        userLikeDislikeMapper.deleteUserLikeDislike(userID);
         return "redirect:/deleteUserSuccess";
     }
 
 
+    @GetMapping("/GetLikeUser/{tempName}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public String GetLikeUser(@PathVariable("tempName") String userName) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (userName.equals(name)) return "redirect:/UserPage/" + userName;
+        int id = userMapper.getIDByUsername(userName);
+        int numberLike = userLikeDislikeMapper.getLikeByID(id) + 1;
+        userLikeDislikeMapper.updateLikeByID(id, numberLike);
+        return "redirect:/UserPage/" + userName;
+    }
+
+    @GetMapping("/GetDislikeUser/{tempName}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public String GetDislikeUser(@PathVariable("tempName") String userName) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (userName.equals(name)) return "redirect:/UserPage/" + userName;
+        int id = userMapper.getIDByUsername(userName);
+        int numberDislike = userLikeDislikeMapper.getDislikeByID(id) + 1;
+        userLikeDislikeMapper.updateDislikeByID(id, numberDislike);
+        return "redirect:/UserPage/" + userName;
+    }
 
 
-   /* @GetMapping("/page/{username}")
+    @GetMapping("/UserPage/{username}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public String pageUsername(@PathVariable("username") String username, Model model) {
-        String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userMapper.getUserByUsername(username);
-        model.addAttribute("user", user);
-        return "";
-    }*/
+        if (username.equals("root")) username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int id = userMapper.getIDByUsername(username);
+        User loginUser = userMapper.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        User targetUser = userMapper.getUserByID(id);
+        UserIntroduction targetUserIntroduction = userIntroductionMapper.getUserIntroductionByID(id);
+        UserLikeDislike targetUserLikeDislike = userLikeDislikeMapper.getUserLikeDislikeByID(id);
+        model.addAttribute("loginUser", loginUser);
+        model.addAttribute("targetUser", targetUser);
+        model.addAttribute("targetUserIntroduction", targetUserIntroduction);
+        model.addAttribute("targetUserLikeDislike", targetUserLikeDislike);
+        return "/views/userPage";
+    }
+
+    @GetMapping("/popularUser")
+    public String popularUser(Model model) {
+        List<User> listPopularUser = popularUserService.getPopularUsers();
+        List<UserLikeDislike> listUserLikeDislike = popularUserService.popularPopularUsersLikeDislike(listPopularUser);
+        model.addAttribute("popularUser", listPopularUser);
+        model.addAttribute("UserLikeDislike", listUserLikeDislike);
+        return "/views/popularUser";
+    }
+
 }

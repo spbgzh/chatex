@@ -31,13 +31,13 @@ public class RandomUserMaker {
         Random r = new Random();
         for (int i = 1; i <= 1000; i++) {
             userMapper.insertUser(String.valueOf(r.nextInt(100)),
-                    "Test" + String.valueOf(i),
+                    "Test" + i,
                     String.valueOf(123),
                     r.nextBoolean() ? "man" : "woman",
                     "test", "test",
                     "test", "test", _user
             );
-            int tempId = userMapper.getIDByUsername("Test" + String.valueOf(i));
+            int tempId = userMapper.getIDByUsername("Test" + i);
             userIntroductionMapper.insertUserIntroduction(tempId, "test", "test");
             hobbyScoreMapper.insertHobbyScores(r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10), r.nextInt(10));
             userLikeDislikeMapper.insertUserLikeDislike(r.nextInt(20),r.nextInt(10));

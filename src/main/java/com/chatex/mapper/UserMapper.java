@@ -1,7 +1,6 @@
 package com.chatex.mapper;
 
 import com.chatex.pojo.User;
-import com.chatex.pojo.UserIntroduction;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -12,18 +11,18 @@ public interface UserMapper {
 
     // user
     @Update("update user set password = #{password} where username = #{username}")
-    int updatePasswordByUsername(@Param("username") String username,
+    void updatePasswordByUsername(@Param("username") String username,
                                  @Param("password") String password);
 
     @Update("update user set Role = #{Role} where username = #{username}")
-    int updateRoleByUsername(@Param("username") String username,
+    void updateRoleByUsername(@Param("username") String username,
                              @Param("Role") String Role);
 
     @Update("update user set age = #{age}," +
             " username = #{username}, gender = #{gender}, first_name = #{first_name}," +
             " last_name = #{last_name}, email = #{email}, phone_number = #{phone_number}" +
             " where id = #{id}")
-    int updateUserByID(@Param("id") int id,
+    void updateUserByID(@Param("id") int id,
                        @Param("age") String age,
                        @Param("username") String username,
                        @Param("gender") String gender,
@@ -36,7 +35,7 @@ public interface UserMapper {
             + "(age, username, password, gender, first_name, last_name, email, phone_number, role) "
             + "values "
             + "(#{age}, #{username}, #{password}, #{gender},#{first_name}, #{last_name}, #{email}, #{phone_number}, #{role}) ")
-    int insertUser(@Param("age") String age,
+    void insertUser(@Param("age") String age,
                    @Param("username") String username,
                    @Param("password") String password,
                    @Param("gender") String gender,
@@ -59,15 +58,15 @@ public interface UserMapper {
 
     @Select("select * from user where id != #{id} && age >= #{minAge} && age <= #{maxAge} && gender = #{genderRestriction}")
     List<User> getUserListWithoutIdGenderRestriction(@Param("id") int id,
-                                                     @Param("minAge") String minAge,
-                                                     @Param("maxAge") String maxAge,
+                                                     @Param("minAge") int minAge,
+                                                     @Param("maxAge") int maxAge,
                                                      @Param("genderRestriction") String genderRestriction
     );
 
     @Select("select * from user where id != #{id} && age >= #{minAge} && age <= #{maxAge}")
     List<User> getUserListWithoutId(@Param("id") int id,
-                                    @Param("minAge") String minAge,
-                                    @Param("maxAge") String maxAge);
+                                    @Param("minAge") int minAge,
+                                    @Param("maxAge") int maxAge);
 
     @Select("select id from user where username = #{username}")
     int getIDByUsername(@Param("username") String username);
@@ -99,7 +98,7 @@ public interface UserMapper {
 
 
     @Delete("delete from user where id = #{id}")
-    int deleteUserByID(@Param("id") int id);
+    void deleteUserByID(@Param("id") int id);
 
     @Select("select role from user where username = #{username}")
     String getRoleByUsername(@Param("username") String username);
