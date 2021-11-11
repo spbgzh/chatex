@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-up Page</title>
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/form-validation.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <a th:href="@{/}">
+                    <img class="d-block mx-auto mb-4" th:src="@{/img/logo.svg}" alt="" width="72" height="57">
+                </a>
+                <h2>Sign-up</h2>
+            </div>
+
+            <div class="g-5 container-sm ">
+                <form class="needs-validation" novalidate th:action="@{/PostSignUp}" method="post">
+                    <div class="row g-3">
+                        <div class="row justify-content-md-center">
+                            <div class="row col-sm-8">
+                                <label for="Username" class="form-label">Username</label>
+                                <input name="username" type="text" class="form-control" id="username"
+                                       placeholder="Username" required>
+                                <div class="invalid-feedback">
+                                    Your username is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="row col-sm-8">
+                                <label for="Password" class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control" id="Password"
+                                       placeholder="Password" required>
+                                <div class="invalid-feedback">
+                                    Your password is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm-4">
+                                <label for="firstName" class="form-label">First name</label>
+                                <input name="first_name" type="text" class="form-control" id="firstName"
+                                       placeholder="Guo" required>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="lastName" class="form-label">Last name</label>
+                                <input name="last_name" type="text" class="form-control" id="lastName"
+                                       placeholder="Zihan" required>
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="row col-sm-8">
+                                <label for="age" class="form-label">Age</label>
+                                <input name="age" type="text" class="form-control" id="Age"
+                                       placeholder="Age" required>
+                                <div class="invalid-feedback">
+                                    Your age is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-md-center">
+                            <div class="row col-sm-8 ">
+                                <label for="Gender" class="form-label">Sex</label>
+                                <select name="gender" class="form-control" id="Gender">
+                                    <option value="man">Man</option>
+                                    <option value="woman">Woman</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-md-center">
+                            <div class="row col-sm-8">
+                                <label for="email" class="form-label">Email</label>
+                                <input name="email" type="email" class="form-control" id="email"
+                                       placeholder="you@example.com" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="row col-sm-8">
+                                <label for="PhoneNumber" class="form-label">Phone Number</label>
+                                <input name="phone_number" type="text" class="form-control" id="PhoneNumber"
+                                       placeholder="+79999999999"
+                                       required>
+                                <div class="invalid-feedback">
+                                    Please enter your Phone Number.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="text-center">
+                        <button class="w-50 btn btn-lg btn-primary align-content-sm-center  " type="submit">Sign up
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2021 Company, Inc</p>
+    </div>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/form-validation.js}"></script>
+</div>
+</body>
+</html>
