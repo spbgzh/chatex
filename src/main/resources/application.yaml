@@ -1,12 +1,18 @@
 spring:
   datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC&useUnicode=true&charcterEncoding=utf-8
+    username: "root"
+    password: "123456"
+    url: jdbc:mysql://localhost:3306/mybatis?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      test-on-borrow: true
+      test-while-idle: true
+
   thymeleaf:
     cache: false
     encoding: UTF-8
+Server:
+  port: 80
 
 
 
