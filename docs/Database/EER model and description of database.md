@@ -1,5 +1,5 @@
 # EER Model and Description of database
-We have four entities: WebUser(Information about user), UserIntroduction(Description of yourself on the site), Hobbies(Keeps a list of hobbies which are used to find similar users), UserLike(User ratings)
+We have four entities: WebUser(Information about user), UserIntroduction(Description of yourself on the site), Hobbies(Keeps a list of hobbies which are used to find similar users), UserLike(User ratings)  
 Each entity has attributes.
 WebUser: UserId(Privacy key), UserLogin(Login) its UNIQUE, UserPassword(Password), FirstName, LastName, Pantronymic, Email its UNIQUE, PhoneNumber, Role, RegistrationDate(automatically), City
 Hobbies: UserId(Privace key), Sports, Music, Travel, Reading, Art, Movie, Cartoon, Games, Cooking, Shopping each of them takes on a value from 0 to 10.
