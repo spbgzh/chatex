@@ -7,5 +7,5 @@ UserIntroduction: UserId(Privacy key), AboutUser, SomethingToSay
 UserLike: UserId(privacy key), UserDislike, UserLike  
 We have one-to-one relationship between entites. It all depends on the WebUser entity. If you delete a user from WebUser, then he will be removed from the rest because we have enabled cascade mode  
 All attributes are unambiguous.  
-EER Model
+#EER Model
 ![Alt Image](https://github.com/Erkobrax/WEBProject/raw/main/docs/images/EERDiagram.png)
