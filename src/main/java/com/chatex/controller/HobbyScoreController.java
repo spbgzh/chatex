@@ -24,7 +24,7 @@ public class HobbyScoreController {
         String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
         HobbyScore hobbyScore = hobbyScoreMapper.getHobbyScoreByID(userMapper.getIDByUsername(loginName));
         model.addAttribute("hobbyScore", hobbyScore);
-        return "views/scorepage";
+        return "/views/scorepage";
     }
 
     @PostMapping("/PostScore")

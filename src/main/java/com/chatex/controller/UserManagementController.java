@@ -142,7 +142,7 @@ public class UserManagementController {
     public String manageUser(Model model) {
         List<User> listUser = userMapper.getUserList();
         model.addAttribute("listUser", listUser);
-        return "views/manageUser";
+        return "/views/manageUser";
     }
 
     @PostMapping("/setRoleByUsername")
@@ -213,7 +213,7 @@ public class UserManagementController {
         model.addAttribute("targetUser", targetUser);
         model.addAttribute("targetUserIntroduction", targetUserIntroduction);
         model.addAttribute("targetUserLikeDislike", targetUserLikeDislike);
-        return "views/userPage";
+        return "/views/userPage";
     }
 
     @GetMapping("/popularUser")
@@ -222,7 +222,7 @@ public class UserManagementController {
         List<UserLikeDislike> listUserLikeDislike = popularUserService.popularPopularUsersLikeDislike(listPopularUser);
         model.addAttribute("popularUser", listPopularUser);
         model.addAttribute("UserLikeDislike", listUserLikeDislike);
-        return "views/popularUser";
+        return "/views/popularUser";
     }
 
 }

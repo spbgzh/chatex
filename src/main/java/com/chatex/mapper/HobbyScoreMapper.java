@@ -10,7 +10,7 @@ public interface HobbyScoreMapper {
     @Select("select * from hobby_scores where id = #{id}")
     HobbyScore getHobbyScoreByID(@Param("id") int id);
 
-    @Select("select * from hobby_scores where id <> #{id}")
+    @Select("select * from hobby_scores where id <> #{id}\"")
     List<HobbyScore> getHobbyScoreListWithoutID(@Param("id") int id);
 
     @Update("update hobby_scores set sports = #{sports}," +
