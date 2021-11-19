@@ -11,8 +11,4 @@ public class RouterController {
         return "../static/index";
     }
 
-    @RequestMapping("/guides")
-    public String guides(){
-        return "views/guides";
-    }
 }

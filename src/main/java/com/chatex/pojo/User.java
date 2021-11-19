@@ -73,8 +73,7 @@ public class User  implements Comparable<User>{
         return phone_number;
     }
 
-    public User(int id,String username, String password, String age, String gender, String first_name, String last_name, String email, String phone_number, String role) {
-        this.id=id;
+    public User(String username, String password, String age, String gender, String first_name, String last_name, String email, String phone_number, String role) {
         this.username = username;
         this.password = password;
         this.age = age;

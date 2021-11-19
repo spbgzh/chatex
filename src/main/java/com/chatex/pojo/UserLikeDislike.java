@@ -21,8 +21,7 @@ public class UserLikeDislike {
         return userDislike;
     }
 
-    public UserLikeDislike(int id,int userLike, int userDislike) {
-        this.id=id;
+    public UserLikeDislike(int userLike, int userDislike) {
         this.userLike = userLike;
         this.userDislike = userDislike;
     }
