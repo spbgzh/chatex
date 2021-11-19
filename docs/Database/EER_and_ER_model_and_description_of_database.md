@@ -1,5 +1,5 @@
 # ER Model
-![Alt Image](https://github.com/Erkobrax/WEBProject/raw/main/docs/images/ER_Diagram.png)  
+![Alt Image](https://github.com/Erkobrax/WEBProject/raw/main/docs/Database/Images/ER_Diagram.png)  
 # Description of database
 We have four entities: WebUser(Information about user), UserIntroduction(Description of yourself on the site), Hobbies(Keeps a list of hobbies which are used to find similar users), UserLike(User ratings)  
 Each entity has attributes.
