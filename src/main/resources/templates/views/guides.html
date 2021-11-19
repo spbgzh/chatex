@@ -29,7 +29,7 @@
         </div>
         <div sec:authorize="isAuthenticated" class="col-md-3 text-end">
             <a th:href="@{/logout}" class="btn btn-outline-primary me-2">Logout</a>
-            <a th:href="@{/UserPage/}+'root'" class="btn btn-primary">My page</a>
+            <a th:href="@{/mypage}" class="btn btn-primary">My page</a>
             <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/GetManageUser}" class="btn ">
                 <svg width="30" height="30" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -45,23 +45,23 @@
     <div sec:authorize="!isAuthenticated">
         <h1 class="display-4 fw-bold">Chatex</h1>
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">This is a social application website helps users find Like-minded friends.</p>
+            <p class="lead mb-4">This is a social application website based on clustering algorithm.<br>
+                The website calculates and pushes people who match you based on the personal
+                information, hobbies and other information filled in when users register.
+                It helps users to make new friends who have a good impression of each other.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                 <a th:href="@{/SearchingPage}">
                     <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Searching</button>
                 </a>
+                <a th:href="@{/guides}">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Guides</button>
+                </a>
             </div>
         </div>
-        <a th:href="@{/popularUser}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-award"
-                 viewBox="0 0 16 16">
-                <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z"></path>
-                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"></path>
-            </svg>
-        </a>
     </div>
 
     <div sec:authorize="isAuthenticated">
+        <br>
         <h1 class="display-4 fw-bold" sec:authentication="name">"name"</h1>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Welcome to Chatex</p>
@@ -75,13 +75,7 @@
                 </a>
             </div>
         </div>
-        <a th:href="@{/popularUser}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-award"
-                 viewBox="0 0 16 16">
-                <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z"></path>
-                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"></path>
-            </svg>
-        </a>
+        <br><br>
     </div>
 
     <div class="overflow-hidden" style="max-height: 30vh;">
