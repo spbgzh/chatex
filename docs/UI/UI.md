@@ -128,7 +128,6 @@
     ![](./Images/Login_Page.png) 
 3. Sign-up Page  
     ![](./Images/Sign-up_Page.png) 
-
 4. My Page  
     ![](./Images/My_Page.png) 
 5. Edit Information Page   
@@ -153,3 +152,4 @@
  ![](./Images/Management_Page.png)
 
 ## Interface Diagram
+![](./Images/UI.png)
