@@ -1,5 +1,5 @@
 # ER Model
-![Alt Image](https://github.com/Erkobrax/WEBProject/raw/main/docs/Database/Images/ER_Diagram.png)  
+![Alt Image](./Images/ER_Diagram.png)  
 # Description of database
 We have four entities: WebUser(Information about user), UserIntroduction(Description of yourself on the site), Hobbies(Keeps a list of hobbies which are used to find similar users), UserLike(User ratings)  
 Each entity has attributes.
@@ -10,4 +10,4 @@ UserLike: UserId(privacy key), UserDislike, UserLike
 We have one-to-one relationship between entites. It all depends on the WebUser entity. If you delete a user from WebUser, then he will be removed from the rest because we have enabled cascade mode  
 All attributes are unambiguous.  
 # EER Model  
-![Alt Image](https://github.com/Erkobrax/WEBProject/raw/main/docs/Database/Images/EERDiagram.png)
+![Alt Image](./Images/EERDiagram.png)
