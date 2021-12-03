@@ -85,3 +85,5 @@ Administrator:
 | Basic Path        | Click the button to generate random users |
 | Postconditions    | Random user generation, provided to the administrator for testing |
 
+## Use Cases Image
+![](./UseCases.png)  
