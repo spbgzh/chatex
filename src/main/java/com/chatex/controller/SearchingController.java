@@ -7,7 +7,6 @@ import com.chatex.pojo.HobbyScore;
 import com.chatex.pojo.SearchParameters;
 import com.chatex.pojo.User;
 import com.chatex.service.SearchingService;
-import com.chatex.service.SearchingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -8,7 +8,6 @@ import com.chatex.pojo.User;
 import com.chatex.pojo.UserIntroduction;
 import com.chatex.pojo.UserLikeDislike;
 import com.chatex.service.PopularUserService;
-import com.chatex.service.PopularUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class UserManagementController {
