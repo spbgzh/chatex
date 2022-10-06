@@ -3,7 +3,7 @@
 ## Introduction
 
 This is a Java web project for the second year of the university.  
-It's a social application that helps you find like-minded friends. This project uses the k means algorithm to find the person closest to you in the vector space through the eigenvalues of your hobbies, and recommend him to you. You can get his contact information and you can like or dislike him.  
+It's a social application that helps you find like-minded friends. This project uses the *k-means algorithm* to find the person closest to you in the vector space through the eigenvalues of your hobbies, and recommend him to you. You can get his contact information and you can *like* or *dislike* him.  
 There is also a list of the most popular people on the home page.  
 
 ## Technology Stack
