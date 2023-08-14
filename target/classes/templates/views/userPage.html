@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/footers.css}" rel="stylesheet">
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet">
+
+</head>
+<body>
+<!--header!-->
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-infinity"
+                 viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M5.68 5.792a2.75 2.75 0 1 0 0 3.916L7.345 7.75 5.681 5.792ZM8 6.978 6.416 5.113l-.014-.015a3.75 3.75 0 1 0 0 5.304l.014-.015L8 8.522l1.584 1.865.014.015a3.75 3.75 0 1 0 0-5.304l-.014.015L8 6.978Zm.656.772 1.663 1.958a2.75 2.75 0 1 0 0-3.916L8.656 7.75Z"/>
+            </svg>
+        </a>
+
+
+        <div sec:authorize="!isAuthenticated" class="col-md-3 text-end">
+            <a th:href="@{/doLogin}" class="btn btn-outline-primary me-2">Login</a>
+            <a th:href="@{/signup}" class="btn btn-primary">Sign-up</a>
+        </div>
+        <div sec:authorize="isAuthenticated" class="col-md-3 text-end">
+            <a th:href="@{/logout}" class="btn btn-outline-primary me-2">Logout</a>
+            <a th:href="@{/}" class="btn btn-primary">Back</a>
+        </div>
+    </header>
+</div>
+
+
+<div class="container" style="padding:0 120px;">
+
+    <h1 class="text-center" th:text="${targetUser.getUsername()}+'\'s Page'">Home Page</h1>
+    <p style="padding:0 40px;" class="text-center lead">Welcome to my page!</p>
+
+    <!--Basic Information!-->
+        <div class="justify-content-md-center" style="padding:20px;margin: 10px">
+
+            <dl  class="row center ">
+                <dt class="col-sm-4 h4 text-end">Username</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUser.getUsername()}"></dd>
+
+                <dt class="col-sm-4 h4 text-end">Age</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUser.getAge()}"></dd>
+
+                <dt class="col-sm-4 h4 text-end">Sex</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUser.getGender()}=='man'?'Man':'Woman'"></dd>
+
+                <dt class="col-sm-4 h4 text-end">Name</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUser.getFirst_name()}+' '+${targetUser.getLast_name()}"></dd>
+
+                <dt class="col-sm-4 h4 text-end">Email</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUser.getEmail()}"></dd>
+
+                <dt class="col-sm-4 h4 text-end">Phone Number</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUser.getPhone_number()}"></dd>
+
+                <dt class="col-sm-4 h4 text-end">About me</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUserIntroduction.getAboutMe()}"></dd>
+
+                <dt class="col-sm-4 h4 text-end">Something to say</dt>
+                <dd class="col-sm-7 lead text-center" th:text="${targetUserIntroduction.getSomethingToSay()}"></dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="col-sm-3 h4 text-end">Like</dt>
+                <dd class="col-sm-3 lead" th:text="${targetUserLikeDislike.getUserLike()}"></dd>
+
+                <dt class="col-sm-3 h4 text-end">Dislike</dt>
+                <dd class="col-sm-3 lead" th:text="${targetUserLikeDislike.getUserDislike()}"></dd>
+
+                <dt class="col-sm-6 h4 text-end">Total</dt>
+                <dd class="col-sm-6 lead"
+                    th:text="${targetUserLikeDislike.getUserLike()}-${targetUserLikeDislike.getUserDislike()}"></dd>
+            </dl>
+            <div class="mb-3 row">
+                <div th:if="${loginUser.getUsername()}==${targetUser.getUsername()}" class="col-md-12 text-center">
+                    <a th:href="@{/mypage}" class="btn btn-primary me-2">Edit</a>
+                </div>
+                <div th:if="${loginUser.getUsername()}!=${targetUser.getUsername()}" class="col-md-5 text-end">
+                    <a th:href="@{/GetLikeUser/}+${targetUser.getUsername()}" class="btn btn-success me-2">Like</a>
+                    </div>
+                <div th:if="${loginUser.getUsername()}!=${targetUser.getUsername()}" sec:authorize="isAuthenticated" class="col-md-4 text-center">
+                    <a th:href="@{/GetDislikeUser/}+${targetUser.getUsername()}" class="btn btn-danger">Dislike</a>
+                </div>
+            </div>
+        </div>
+
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top">
+        <p class="col-md-4 mb-0 text-muted">&copy; 2021 Company, Inc</p>
+
+        <a href="/"
+           class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-infinity"
+                 viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M5.68 5.792a2.75 2.75 0 1 0 0 3.916L7.345 7.75 5.681 5.792ZM8 6.978 6.416 5.113l-.014-.015a3.75 3.75 0 1 0 0 5.304l.014-.015L8 8.522l1.584 1.865.014.015a3.75 3.75 0 1 0 0-5.304l-.014.015L8 6.978Zm.656.772 1.663 1.958a2.75 2.75 0 1 0 0-3.916L8.656 7.75Z"/>
+            </svg>
+        </a>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-muted" th:href="@{https://github.com/spbgzh/WEBProject}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github"
+                     viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a></li>
+            <li class="ms-3"><a class="text-muted" href="#">
+                <svg class="bi" width="24" height="24">
+                    <use xlink:href="#instagram"/>
+                </svg>
+            </a></li>
+            <li class="ms-3"><a class="text-muted" href="#">
+                <svg class="bi" width="24" height="24">
+                    <use xlink:href="#facebook"/>
+                </svg>
+            </a></li>
+        </ul>
+
+    </footer>
+</div>
+
+
+</div>
+
+
+</body>
+</html>
